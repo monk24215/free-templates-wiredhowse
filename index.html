@@ -632,17 +632,9 @@ renderPrev();
 //     alert("You'll only see this once!");
 //   }
 
-window.onload = function () {
-    if (!ls.exists('has_code_run_before')) {
-         smoOpen();
-        ls.set.single('has_code_run_before', true);
-
-        /** or... you can use a callback. **/
-        ls.set.single('has_code_run_before', true, function () {
-           /** Your code here... **/ 
-        });
-    }
-};
+if (!localStorage.getItem('wh_guide_seen')) {
+  setTimeout(function() { smoOpen(); localStorage.setItem('wh_guide_seen','1'); }, 800);
+}
   
 </script>
 </body>
