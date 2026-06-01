@@ -700,7 +700,7 @@ body {
         <div class="divider"></div>
         <div class="step-body">
           Click <strong>Save</strong>. Listmonk will validate the template — if it contains
-          <strong>{{ "{{" }} .Message {{ "}}" }}</strong> you're good. You can optionally set it as your default template.
+          <strong>{{ template "content" . }}</strong> you're good. You can optionally set it as your default template.
         </div>
         <div class="checklist">
           <div class="check-item">
@@ -770,7 +770,7 @@ body {
       </div>
       <div class="var-grid">
         <div class="var-item highlight-var">
-          <div class="var-code">{{ "{{" }} .Message {{ "}}" }}</div>
+          <div class="var-code">{{ template "content" . }}</div>
           <div class="var-desc"><strong>Required.</strong> Where your campaign body text injects. Must be in every template.</div>
         </div>
         <div class="var-item highlight-var">
@@ -809,7 +809,7 @@ body {
         <div class="divider"></div>
         <div class="step-body">
           When creating a new campaign in listmonk, there's a <strong>Template</strong> dropdown.
-          Pick the template you just saved. Your campaign body flows into <strong>{{ "{{" }} .Message {{ "}}" }}</strong> automatically.
+          Pick the template you just saved. Your campaign body flows into <strong>{{ template "content" . }}</strong> automatically.
         </div>
         <div class="checklist">
           <div class="check-item">
@@ -822,7 +822,7 @@ body {
           </div>
           <div class="check-item">
             <div class="check-icon">✉️</div>
-            <div class="check-text">Write your campaign content normally<span>It injects into the template at {{ "{{" }} .Message {{ "}}" }}</span></div>
+            <div class="check-text">Write your campaign content normally<span>It injects into the template at {{ template "content" . }}</span></div>
           </div>
         </div>
       </div>

@@ -22,7 +22,7 @@
         <h2 style="font-size:20px;font-weight:600;color:#111111;margin:0 0 20px;line-height:1.3;">{{ .Campaign.Subject }}</h2>
 
         <div style="font-size:15px;line-height:1.75;color:#444444;">
-          {{ .Message }}
+          {{ template "content" . }}
         </div>
 
       </td></tr>
