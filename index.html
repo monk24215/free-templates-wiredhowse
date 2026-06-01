@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Free listmonk email templates and a live template builder. No signup, no paywall, no harassment. Open source." />
+<title>Free Listmonk Templates — freetemplates.wiredhowse.app</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --ink: #0f0f0f;
+  --ink-mid: #444444;
+  --ink-muted: #888888;
+  --surface: #faf9f6;
+  --surface-2: #f0ede6;
+  --surface-card: #ffffff;
+  --accent: #2563eb;
+  --accent-light: #dbeafe;
+  --gold: #d4a017;
+  --rule: #e2ddd6;
+  --radius: 10px;
+  --mono: 'DM Mono', monospace;
+  --sans: 'DM Sans', sans-serif;
+  --serif: 'DM Serif Display', serif;
+}
+
+html { scroll-behavior: smooth; }
+body { background: var(--surface); color: var(--ink); font-family: var(--sans); font-size: 16px; line-height: 1.6; }
+
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* NAV */
+nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(250,249,246,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--rule);
+  padding: 0 32px;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 56px;
+}
+.nav-brand { font-family: var(--serif); font-size: 20px; color: var(--ink); }
+.nav-links { display: flex; gap: 28px; font-size: 14px; font-weight: 500; }
+.nav-links a { color: var(--ink-mid); }
+.nav-links a:hover { color: var(--ink); text-decoration: none; }
+.nav-badge {
+  font-size: 11px; font-weight: 600; background: var(--accent-light);
+  color: var(--accent); padding: 3px 10px; border-radius: 20px; letter-spacing: 0.03em;
+}
+
+/* HERO */
+.hero {
+  max-width: 860px; margin: 0 auto;
+  padding: 80px 32px 64px;
+  text-align: center;
+}
+.hero-label {
+  display: inline-block;
+  font-family: var(--mono); font-size: 12px; font-weight: 500;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--accent); background: var(--accent-light);
+  padding: 5px 14px; border-radius: 20px;
+  margin-bottom: 28px;
+}
+.hero h1 {
+  font-family: var(--serif); font-size: clamp(38px, 6vw, 64px);
+  font-weight: 400; line-height: 1.1;
+  color: var(--ink); margin-bottom: 20px;
+  letter-spacing: -0.5px;
+}
+.hero h1 em { font-style: italic; color: var(--accent); }
+.hero p {
+  font-size: 18px; color: var(--ink-mid); max-width: 560px;
+  margin: 0 auto 36px; line-height: 1.7; font-weight: 300;
+}
+.hero-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+.btn-primary {
+  background: var(--ink); color: #fff;
+  font-size: 14px; font-weight: 500;
+  padding: 12px 28px; border-radius: var(--radius);
+  transition: background 0.15s, transform 0.1s;
+  display: inline-flex; align-items: center; gap: 8px;
+}
+.btn-primary:hover { background: #2c2c2c; text-decoration: none; transform: translateY(-1px); }
+.btn-secondary {
+  background: transparent; color: var(--ink);
+  border: 1px solid var(--rule);
+  font-size: 14px; font-weight: 500;
+  padding: 12px 28px; border-radius: var(--radius);
+  transition: border-color 0.15s, transform 0.1s;
+  display: inline-flex; align-items: center; gap: 8px;
+}
+.btn-secondary:hover { border-color: var(--ink-mid); text-decoration: none; transform: translateY(-1px); }
+
+/* SECTION */
+section { padding: 72px 32px; }
+.section-inner { max-width: 1040px; margin: 0 auto; }
+.section-label {
+  font-family: var(--mono); font-size: 11px; font-weight: 500;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--ink-muted); margin-bottom: 12px;
+}
+.section-title {
+  font-family: var(--serif); font-size: clamp(26px, 4vw, 38px);
+  font-weight: 400; color: var(--ink); margin-bottom: 16px; line-height: 1.2;
+}
+.section-sub { font-size: 16px; color: var(--ink-mid); max-width: 520px; margin-bottom: 48px; font-weight: 300; }
+
+/* TEMPLATES GRID */
+.templates-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+.tpl-card {
+  background: var(--surface-card);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: box-shadow 0.2s, transform 0.15s;
+}
+.tpl-card:hover { box-shadow: 0 8px 32px rgba(0,0,0,0.08); transform: translateY(-2px); }
+.tpl-preview {
+  height: 200px; overflow: hidden;
+  border-bottom: 1px solid var(--rule);
+  position: relative; background: #f4f4f4;
+}
+.tpl-preview iframe {
+  width: 200%; height: 200%;
+  transform: scale(0.5); transform-origin: top left;
+  border: none; pointer-events: none;
+}
+.tpl-info { padding: 20px 24px; }
+.tpl-name { font-weight: 600; font-size: 15px; color: var(--ink); margin-bottom: 4px; }
+.tpl-desc { font-size: 13px; color: var(--ink-muted); margin-bottom: 16px; line-height: 1.5; }
+.tpl-actions { display: flex; gap: 8px; }
+.tpl-btn {
+  font-size: 12px; font-weight: 500; padding: 7px 16px;
+  border-radius: 7px; cursor: pointer; font-family: var(--sans);
+  border: 1px solid var(--rule);
+  background: transparent; color: var(--ink-mid);
+  transition: all 0.15s;
+}
+.tpl-btn:hover { border-color: var(--ink); color: var(--ink); }
+.tpl-btn.primary { background: var(--ink); color: white; border-color: var(--ink); }
+.tpl-btn.primary:hover { background: #2c2c2c; }
+.tpl-tag {
+  display: inline-block; font-size: 10px; font-weight: 600;
+  letter-spacing: 0.06em; text-transform: uppercase;
+  background: var(--surface-2); color: var(--ink-muted);
+  padding: 2px 8px; border-radius: 4px; margin-bottom: 8px;
+}
+
+/* BUILDER SECTION */
+#builder { background: var(--surface-2); }
+.builder-wrap {
+  background: var(--surface-card);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  overflow: hidden;
+  display: grid; grid-template-columns: 300px 1fr;
+  min-height: 680px;
+}
+.bp { background: var(--surface); border-right: 1px solid var(--rule); overflow-y: auto; }
+.bprev { background: var(--surface-card); display: flex; flex-direction: column; }
+.bp-head { padding: 14px 18px; border-bottom: 1px solid var(--rule); font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-muted); }
+.bs { padding: 16px 18px; border-bottom: 1px solid var(--rule); }
+.bs-label { font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-muted); margin-bottom: 10px; }
+.bf { margin-bottom: 10px; }
+.bf label { display: block; font-size: 12px; color: var(--ink-mid); margin-bottom: 4px; }
+.bf input, .bf select, .bf textarea {
+  width: 100%; font-size: 13px; padding: 7px 10px;
+  background: var(--surface-card); border: 1px solid var(--rule);
+  border-radius: 7px; color: var(--ink); font-family: var(--sans);
+}
+.bf input:focus, .bf select:focus, .bf textarea:focus {
+  outline: none; border-color: var(--accent);
+}
+.bf textarea { resize: vertical; min-height: 56px; }
+.color-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.cf { display: flex; flex-direction: column; gap: 4px; }
+.cf label { font-size: 12px; color: var(--ink-mid); }
+.cf input[type=color] { width: 100%; height: 32px; border: 1px solid var(--rule); border-radius: 7px; cursor: pointer; background: var(--surface-card); padding: 2px; }
+.tog-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
+.tog-row label:first-child { font-size: 12px; color: var(--ink-mid); }
+.tog { position: relative; width: 32px; height: 18px; }
+.tog input { opacity: 0; width: 0; height: 0; }
+.tog-sl { position: absolute; inset: 0; background: var(--rule); border-radius: 9px; cursor: pointer; transition: background 0.2s; }
+.tog input:checked + .tog-sl { background: var(--accent); }
+.tog-sl::before { content: ''; position: absolute; width: 12px; height: 12px; left: 3px; top: 3px; background: white; border-radius: 50%; transition: transform 0.2s; }
+.tog input:checked + .tog-sl::before { transform: translateX(14px); }
+.btoolbar { padding: 10px 16px; border-bottom: 1px solid var(--rule); display: flex; align-items: center; justify-content: space-between; background: var(--surface); }
+.btoolbar-l { display: flex; gap: 6px; }
+.tab {
+  font-size: 12px; padding: 5px 14px; border: 1px solid var(--rule);
+  border-radius: 6px; background: transparent; color: var(--ink-mid);
+  cursor: pointer; font-family: var(--sans); transition: all 0.15s;
+}
+.tab.active { background: var(--surface-card); color: var(--ink); border-color: var(--ink-mid); }
+.copy-btn-b {
+  font-size: 12px; padding: 5px 14px; border: 1px solid var(--rule);
+  border-radius: 6px; background: transparent; color: var(--ink-mid);
+  cursor: pointer; font-family: var(--sans); display: flex; align-items: center; gap: 5px;
+  transition: all 0.15s;
+}
+.copy-btn-b:hover { border-color: var(--ink); color: var(--ink); }
+.copy-btn-b.ok { color: #16a34a; border-color: #16a34a; }
+.bprevf { flex: 1; padding: 20px; overflow-y: auto; }
+.bcodev { flex: 1; padding: 20px; overflow: auto; display: none; }
+.bcodev pre { font-size: 11px; font-family: var(--mono); color: var(--ink-mid); white-space: pre-wrap; word-break: break-all; line-height: 1.6; }
+.tpl-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip {
+  font-size: 11px; padding: 4px 12px; border: 1px solid var(--rule);
+  border-radius: 20px; cursor: pointer; color: var(--ink-mid);
+  background: var(--surface-card); font-family: var(--sans);
+  transition: all 0.15s;
+}
+.chip.on { background: var(--accent-light); color: var(--accent); border-color: var(--accent); }
+.block-item {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 6px 10px; background: var(--surface-card);
+  border: 1px solid var(--rule); border-radius: 7px;
+  margin-bottom: 4px; font-size: 12px; color: var(--ink-mid);
+}
+.block-rm { cursor: pointer; font-size: 16px; color: var(--ink-muted); transition: color 0.1s; border: none; background: none; font-family: var(--sans); }
+.block-rm:hover { color: #dc2626; }
+.add-blk {
+  width: 100%; font-size: 12px; padding: 7px;
+  border: 1px dashed var(--rule); border-radius: 7px;
+  background: transparent; color: var(--ink-muted);
+  cursor: pointer; font-family: var(--sans); margin-top: 6px;
+  transition: all 0.15s;
+}
+.add-blk:hover { color: var(--ink-mid); border-color: var(--ink-mid); }
+
+/* HOW IT WORKS */
+.how-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 32px; }
+.how-step { }
+.step-num {
+  font-family: var(--serif); font-size: 42px; color: var(--surface-2);
+  line-height: 1; margin-bottom: 12px; display: block;
+  -webkit-text-stroke: 1px var(--rule);
+}
+.step-title { font-weight: 600; font-size: 15px; color: var(--ink); margin-bottom: 6px; }
+.step-desc { font-size: 14px; color: var(--ink-mid); line-height: 1.6; font-weight: 300; }
+
+/* VARIABLES TABLE */
+.var-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+.var-table th { text-align: left; font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-muted); padding: 0 16px 12px 0; border-bottom: 1px solid var(--rule); }
+.var-table td { padding: 10px 16px 10px 0; border-bottom: 1px solid var(--rule); color: var(--ink-mid); vertical-align: top; }
+.var-table td:first-child { font-family: var(--mono); font-size: 13px; color: var(--accent); white-space: nowrap; }
+.var-table tr:last-child td { border-bottom: none; }
+
+/* FOOTER */
+footer {
+  border-top: 1px solid var(--rule); padding: 40px 32px;
+  text-align: center; font-size: 13px; color: var(--ink-muted);
+}
+footer strong { color: var(--ink); }
+footer a { color: var(--ink-muted); }
+
+/* MODAL */
+.modal-overlay {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.5);
+  z-index: 200; display: none; align-items: center; justify-content: center;
+  padding: 20px;
+}
+.modal-overlay.open { display: flex; }
+.modal {
+  background: var(--surface-card); border-radius: var(--radius);
+  max-width: 680px; width: 100%; max-height: 80vh;
+  overflow: hidden; display: flex; flex-direction: column;
+  border: 1px solid var(--rule);
+}
+.modal-head {
+  padding: 16px 24px; border-bottom: 1px solid var(--rule);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.modal-head h3 { font-size: 16px; font-weight: 600; }
+.modal-close { background: none; border: none; font-size: 22px; cursor: pointer; color: var(--ink-mid); font-family: var(--sans); }
+.modal-body { flex: 1; overflow: auto; padding: 0; }
+.modal-body pre { font-size: 12px; font-family: var(--mono); color: var(--ink-mid); padding: 24px; white-space: pre-wrap; word-break: break-all; line-height: 1.65; }
+.modal-foot {
+  padding: 14px 24px; border-top: 1px solid var(--rule);
+  display: flex; gap: 10px; justify-content: flex-end;
+}
+
+@media (max-width: 700px) {
+  .builder-wrap { grid-template-columns: 1fr; }
+  .bp { max-height: 420px; }
+  nav .nav-links { display: none; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-brand">Free Listmonk Templates</span>
+  <div class="nav-links">
+    <a href="#templates">Templates</a>
+    <a href="#builder">Builder</a>
+    <a href="#variables">Variables</a>
+    <a href="https://github.com/wiredhowse/listmonk-templates" target="_blank">GitHub ↗</a>
+    <span class="nav-badge">100% free</span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">Open source · No signup · No paywall</div>
+  <h1>Listmonk templates<br /><em>that just work</em></h1>
+  <p>Five production-ready email templates for listmonk — plus a live builder to generate your own. Copy, paste, done. No account required.</p>
+  <div class="hero-actions">
+    <a href="#templates" class="btn-primary">Browse templates ↓</a>
+    <a href="#builder" class="btn-secondary">Open builder</a>
+  </div>
+</div>
+
+<!-- HOW IT WORKS -->
+<section style="background: var(--surface-2); padding: 56px 32px;">
+  <div class="section-inner">
+    <div class="section-label">How it works</div>
+    <div class="how-grid">
+      <div class="how-step">
+        <span class="step-num">01</span>
+        <div class="step-title">Pick a template or build your own</div>
+        <div class="step-desc">Five ready-made templates below, or use the live builder to customize colors, fonts, and blocks.</div>
+      </div>
+      <div class="how-step">
+        <span class="step-num">02</span>
+        <div class="step-title">Copy the HTML</div>
+        <div class="step-desc">Click "copy HTML" on any template. The listmonk-required header and footer wrappers are already included.</div>
+      </div>
+      <div class="how-step">
+        <span class="step-num">03</span>
+        <div class="step-title">Paste into listmonk</div>
+        <div class="step-desc">In listmonk go to Templates → New Template → set type to "Campaign" → paste → save. Done.</div>
+      </div>
+      <div class="how-step">
+        <span class="step-num">04</span>
+        <div class="step-title">Write your campaign</div>
+        <div class="step-desc">Your campaign content flows into the <code style="font-family:var(--mono);font-size:12px;background:var(--surface-2);padding:1px 5px;border-radius:4px;">{{ "{{" }} .Message {{ "}}" }}</code> variable automatically.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEMPLATES -->
+<section id="templates">
+  <div class="section-inner">
+    <div class="section-label">Ready-made templates</div>
+    <div class="section-title">Five templates, zero friction</div>
+    <p class="section-sub">Each one is complete listmonk HTML including the required wrapper tags. Copy and paste directly.</p>
+    <div class="templates-grid" id="tpl-grid"></div>
+  </div>
+</section>
+
+<!-- BUILDER -->
+<section id="builder">
+  <div class="section-inner">
+    <div class="section-label">Live builder</div>
+    <div class="section-title">Build your own template</div>
+    <p class="section-sub">Adjust brand colors, layout, and content blocks. Copy the output directly into listmonk.</p>
+
+    <div class="builder-wrap">
+      <div class="bp">
+        <div class="bp-head">Settings</div>
+
+        <div class="bs">
+          <div class="bs-label">Starting point</div>
+          <div class="tpl-chips" id="b-chips">
+            <button class="chip on" data-t="newsletter">Newsletter</button>
+            <button class="chip" data-t="editorial">Editorial</button>
+            <button class="chip" data-t="transactional">Transactional</button>
+            <button class="chip" data-t="plain">Plain text</button>
+            <button class="chip" data-t="promotional">Promotional</button>
+          </div>
+        </div>
+
+        <div class="bs">
+          <div class="bs-label">Brand</div>
+          <div class="bf"><label>Publication / brand name</label><input id="b-name" type="text" value="The Signal" /></div>
+          <div class="bf"><label>Tagline</label><input id="b-tag" type="text" value="Weekly insight worth reading" /></div>
+          <div class="bf"><label>Logo URL (blank for text)</label><input id="b-logo" type="text" placeholder="https://…" /></div>
+          <div class="color-row">
+            <div class="cf"><label>Brand color</label><input type="color" id="b-brand" value="#2563eb" /></div>
+            <div class="cf"><label>Header bg</label><input type="color" id="b-hbg" value="#1a1a2e" /></div>
+          </div>
+          <div class="color-row" style="margin-top:8px;">
+            <div class="cf"><label>Body bg</label><input type="color" id="b-bbg" value="#f4f4f4" /></div>
+            <div class="cf"><label>Card bg</label><input type="color" id="b-cbg" value="#ffffff" /></div>
+          </div>
+          <div class="color-row" style="margin-top:8px;">
+            <div class="cf"><label>Body text</label><input type="color" id="b-txt" value="#333333" /></div>
+            <div class="cf"><label>Button color</label><input type="color" id="b-btn" value="#2563eb" /></div>
+          </div>
+        </div>
+
+        <div class="bs">
+          <div class="bs-label">Layout</div>
+          <div class="tog-row"><label>Header</label><label class="tog"><input type="checkbox" id="b-sh" checked /><span class="tog-sl"></span></label></div>
+          <div class="tog-row"><label>Footer</label><label class="tog"><input type="checkbox" id="b-sf" checked /><span class="tog-sl"></span></label></div>
+          <div class="tog-row"><label>Dividers</label><label class="tog"><input type="checkbox" id="b-sd" checked /><span class="tog-sl"></span></label></div>
+          <div class="tog-row"><label>Rounded corners</label><label class="tog"><input type="checkbox" id="b-rd" checked /><span class="tog-sl"></span></label></div>
+          <div class="bf" style="margin-top:8px;"><label>Max width (px)</label><input id="b-mw" type="number" value="600" min="480" max="700" /></div>
+        </div>
+
+        <div class="bs">
+          <div class="bs-label">Content blocks</div>
+          <div id="b-blocks"></div>
+          <button class="add-blk" id="b-add">+ add block</button>
+        </div>
+
+        <div class="bs">
+          <div class="bs-label">Footer text</div>
+          <div class="bf"><textarea id="b-ft">You're receiving this because you subscribed. {{ "{{" }} UnsubscribeURL {{ "}}" }}</textarea></div>
+        </div>
+      </div>
+
+      <div class="bprev">
+        <div class="btoolbar">
+          <div class="btoolbar-l">
+            <button class="tab active" data-v="prev" id="b-tab-prev">Preview</button>
+            <button class="tab" data-v="code" id="b-tab-code">HTML</button>
+          </div>
+          <button class="copy-btn-b" id="b-copy">⎘ copy for listmonk</button>
+        </div>
+        <div class="bprevf" id="b-prevf">
+          <div id="b-prev" style="max-width:600px;margin:0 auto;font-family:Arial,sans-serif;"></div>
+        </div>
+        <div class="bcodev" id="b-codev">
+          <pre id="b-code"></pre>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VARIABLES -->
+<section id="variables" style="background: var(--surface-2);">
+  <div class="section-inner">
+    <div class="section-label">Reference</div>
+    <div class="section-title">Listmonk template variables</div>
+    <p class="section-sub">Every variable available inside your templates. Use these directly in HTML or in the builder's content blocks.</p>
+    <table class="var-table">
+      <thead><tr><th>Variable</th><th>Description</th></tr></thead>
+      <tbody>
+        <tr><td>{{ "{{" }} .Message {{ "}}" }}</td><td>The campaign body content — this is where your email text goes. Required in every template.</td></tr>
+        <tr><td>{{ "{{" }} .Campaign.Name {{ "}}" }}</td><td>The campaign name as set in listmonk</td></tr>
+        <tr><td>{{ "{{" }} .Campaign.Subject {{ "}}" }}</td><td>The campaign subject line</td></tr>
+        <tr><td>{{ "{{" }} .Campaign.FromName {{ "}}" }}</td><td>Sender name</td></tr>
+        <tr><td>{{ "{{" }} .Campaign.FromEmail {{ "}}" }}</td><td>Sender email address</td></tr>
+        <tr><td>{{ "{{" }} .Subscriber.Email {{ "}}" }}</td><td>Subscriber's email address</td></tr>
+        <tr><td>{{ "{{" }} .Subscriber.FirstName {{ "}}" }}</td><td>Subscriber first name (if set)</td></tr>
+        <tr><td>{{ "{{" }} .Subscriber.LastName {{ "}}" }}</td><td>Subscriber last name (if set)</td></tr>
+        <tr><td>{{ "{{" }} .Subscriber.Name {{ "}}" }}</td><td>Full subscriber name</td></tr>
+        <tr><td>{{ "{{" }} .Subscriber.Attribs.field {{ "}}" }}</td><td>Any custom subscriber attribute (replace "field" with your attribute name)</td></tr>
+        <tr><td>{{ "{{" }} UnsubscribeURL {{ "}}" }}</td><td>One-click unsubscribe URL. Required for compliance.</td></tr>
+        <tr><td>{{ "{{" }} ManageSubscriptionURL {{ "}}" }}</td><td>Link for subscribers to manage their preferences</td></tr>
+        <tr><td>{{ "{{" }} OptinURL {{ "}}" }}</td><td>Double opt-in confirmation URL (use in opt-in confirmation templates)</td></tr>
+        <tr><td>{{ "{{" }} template "email-header" . {{ "}}" }}</td><td>Required at the top of every template — loads listmonk's internal header</td></tr>
+        <tr><td>{{ "{{" }} template "email-footer" . {{ "}}" }}</td><td>Required at the bottom of every template — loads listmonk's internal footer</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p style="margin-bottom:8px;"><strong>Free Listmonk Templates</strong> — made by <a href="https://wiredhowse.com" target="_blank">WiredHowse</a></p>
+  <p>Open source. No account. No paywall. <a href="https://github.com/wiredhowse/listmonk-templates" target="_blank">View on GitHub ↗</a></p>
+</footer>
+
+<!-- CODE MODAL -->
+<div class="modal-overlay" id="modal">
+  <div class="modal">
+    <div class="modal-head">
+      <h3 id="modal-title">Template HTML</h3>
+      <button class="modal-close" id="modal-close">×</button>
+    </div>
+    <div class="modal-body"><pre id="modal-code"></pre></div>
+    <div class="modal-foot">
+      <button class="tpl-btn" id="modal-copy">Copy HTML</button>
+      <button class="tpl-btn" id="modal-dl">Download .html</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const TEMPLATES = [
+  {
+    id: 'newsletter',
+    name: 'Newsletter',
+    tag: 'Publication',
+    desc: 'Dark header with serif brand name. Clean two-column-free layout. Great for weekly roundups.',
+    file: 'templates/newsletter.html'
+  },
+  {
+    id: 'editorial',
+    name: 'Editorial',
+    tag: 'Long-form',
+    desc: 'Newspaper masthead style. Wide margins, editorial typography. Best for long-form writing.',
+    file: 'templates/editorial.html'
+  },
+  {
+    id: 'transactional',
+    name: 'Transactional',
+    tag: 'System',
+    desc: 'Card-style layout on a light grey background. Ideal for receipts, confirmations, and account emails.',
+    file: 'templates/transactional.html'
+  },
+  {
+    id: 'plain',
+    name: 'Plain text style',
+    tag: 'Minimal',
+    desc: 'Looks like a real person sent it. White background, serif body, no chrome. Highest open engagement.',
+    file: 'templates/plain.html'
+  },
+  {
+    id: 'promotional',
+    name: 'Promotional',
+    tag: 'Marketing',
+    desc: 'Dark theme with a gold accent band. Bold headline. High visual impact for announcements and offers.',
+    file: 'templates/promotional.html'
+  }
+];
+
+const templateCode = {};
+
+async function loadTemplate(tpl) {
+  if (templateCode[tpl.id]) return templateCode[tpl.id];
+  try {
+    const r = await fetch(tpl.file);
+    const text = await r.text();
+    templateCode[tpl.id] = text;
+    return text;
+  } catch(e) {
+    return '<!-- Could not load template file -->';
+  }
+}
+
+const grid = document.getElementById('tpl-grid');
+TEMPLATES.forEach(tpl => {
+  const card = document.createElement('div');
+  card.className = 'tpl-card';
+  card.innerHTML = `
+    <div class="tpl-preview" id="prev-${tpl.id}">
+      <div style="display:flex;align-items:center;justify-content:center;height:100%;font-size:13px;color:#aaa;font-family:var(--sans);">Loading preview…</div>
+    </div>
+    <div class="tpl-info">
+      <div class="tpl-tag">${tpl.tag}</div>
+      <div class="tpl-name">${tpl.name}</div>
+      <div class="tpl-desc">${tpl.desc}</div>
+      <div class="tpl-actions">
+        <button class="tpl-btn primary" data-action="copy" data-id="${tpl.id}">Copy HTML</button>
+        <button class="tpl-btn" data-action="view" data-id="${tpl.id}">View code</button>
+        <button class="tpl-btn" data-action="dl" data-id="${tpl.id}">Download</button>
+      </div>
+    </div>`;
+  grid.appendChild(card);
+
+  loadTemplate(tpl).then(code => {
+    const prev = document.getElementById('prev-' + tpl.id);
+    const iframe = document.createElement('iframe');
+    iframe.srcdoc = code.replace(/\{\{[^}]+\}\}/g, m => {
+      if (m.includes('.Message')) return '<p style="font-size:15px;line-height:1.75;color:#444;">Your campaign content appears here. Write your email normally in listmonk and it flows into this space automatically.</p>';
+      if (m.includes('.Campaign.Subject')) return 'Your subject line';
+      if (m.includes('.Campaign.Name')) return 'Your Publication';
+      if (m.includes('.Campaign.FromName')) return 'Your Name';
+      if (m.includes('.Campaign.FromEmail')) return 'you@example.com';
+      if (m.includes('.Subscriber.Email')) return 'reader@example.com';
+      if (m.includes('UnsubscribeURL')) return '#';
+      if (m.includes('ManageSubscriptionURL')) return '#';
+      if (m.includes('template')) return '';
+      return '';
+    });
+    iframe.style.cssText = 'width:200%;height:200%;transform:scale(0.5);transform-origin:top left;border:none;pointer-events:none;';
+    prev.innerHTML = '';
+    prev.appendChild(iframe);
+  });
+});
+
+grid.addEventListener('click', async e => {
+  const btn = e.target.closest('[data-action]');
+  if (!btn) return;
+  const id = btn.dataset.id;
+  const tpl = TEMPLATES.find(t => t.id === id);
+  const code = await loadTemplate(tpl);
+  const action = btn.dataset.action;
+
+  if (action === 'copy') {
+    navigator.clipboard.writeText(code).then(() => {
+      const orig = btn.textContent;
+      btn.textContent = 'Copied!';
+      btn.style.background = '#16a34a';
+      setTimeout(() => { btn.textContent = orig; btn.style.background = ''; }, 2000);
+    });
+  } else if (action === 'view') {
+    document.getElementById('modal-title').textContent = tpl.name + ' — HTML';
+    document.getElementById('modal-code').textContent = code;
+    document.getElementById('modal').classList.add('open');
+    document.getElementById('modal-copy')._code = code;
+    document.getElementById('modal-dl')._tpl = tpl;
+    document.getElementById('modal-dl')._code = code;
+  } else if (action === 'dl') {
+    const blob = new Blob([code], { type: 'text/html' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = tpl.id + '.html';
+    a.click();
+  }
+});
+
+document.getElementById('modal-close').addEventListener('click', () => document.getElementById('modal').classList.remove('open'));
+document.getElementById('modal').addEventListener('click', e => { if (e.target === document.getElementById('modal')) document.getElementById('modal').classList.remove('open'); });
+document.getElementById('modal-copy').addEventListener('click', function() {
+  navigator.clipboard.writeText(this._code).then(() => {
+    const orig = this.textContent;
+    this.textContent = 'Copied!';
+    setTimeout(() => { this.textContent = orig; }, 2000);
+  });
+});
+document.getElementById('modal-dl').addEventListener('click', function() {
+  const blob = new Blob([this._code], { type: 'text/html' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = this._tpl.id + '.html';
+  a.click();
+});
+
+// BUILDER
+const bState = { tpl: 'newsletter', blocks: [
+  { type: 'heading', value: 'This week in brief' },
+  { type: 'body', value: 'Your editorial intro goes here. Keep it punchy.' },
+  { type: 'message', value: '' },
+  { type: 'button', value: 'Read more|https://yoursite.com' },
+]};
+const bLabels = { heading:'Heading', body:'Body text', message:'Message inject (required)', button:'Button / CTA', divider:'Divider', spacer:'Spacer' };
+const bTypes = Object.keys(bLabels);
+
+function bv(id) { return document.getElementById(id).value; }
+function bc(id) { return document.getElementById(id).checked; }
+
+function renderBBlocks() {
+  const el = document.getElementById('b-blocks');
+  el.innerHTML = '';
+  bState.blocks.forEach((b, i) => {
+    const d = document.createElement('div');
+    d.className = 'block-item';
+    d.innerHTML = `<span>⠿ ${bLabels[b.type] || b.type}</span><button class="block-rm" data-i="${i}">×</button>`;
+    d.querySelector('.block-rm').addEventListener('click', ev => {
+      bState.blocks.splice(parseInt(ev.target.dataset.i), 1);
+      renderBBlocks(); renderBPrev();
+    });
+    el.appendChild(d);
+  });
+}
+
+document.getElementById('b-add').addEventListener('click', () => {
+  const t = bTypes[bState.blocks.length % bTypes.length];
+  bState.blocks.push({ type: t, value: t === 'button' ? 'Click here|https://example.com' : t === 'message' ? '' : 'Content here' });
+  renderBBlocks(); renderBPrev();
+});
+
+document.querySelectorAll('[data-t]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('[data-t]').forEach(b => b.classList.remove('on'));
+    btn.classList.add('on');
+    bState.tpl = btn.dataset.t;
+    if (bState.tpl === 'plain') document.getElementById('b-sh').checked = false;
+    else document.getElementById('b-sh').checked = true;
+    renderBPrev();
+  });
+});
+
+document.querySelectorAll('[data-v]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('[data-v]').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const v = btn.dataset.v;
+    document.getElementById('b-prevf').style.display = v === 'prev' ? 'block' : 'none';
+    document.getElementById('b-codev').style.display = v === 'code' ? 'block' : 'none';
+    if (v === 'code') document.getElementById('b-code').textContent = buildBTpl();
+  });
+});
+
+document.getElementById('b-copy').addEventListener('click', () => {
+  navigator.clipboard.writeText(buildBTpl()).then(() => {
+    const btn = document.getElementById('b-copy');
+    btn.classList.add('ok');
+    btn.textContent = '✓ copied';
+    setTimeout(() => { btn.classList.remove('ok'); btn.textContent = '⎘ copy for listmonk'; }, 2000);
+  });
+});
+
+['b-name','b-tag','b-logo','b-mw','b-ft'].forEach(id => document.getElementById(id).addEventListener('input', renderBPrev));
+['b-brand','b-hbg','b-bbg','b-cbg','b-txt','b-btn'].forEach(id => document.getElementById(id).addEventListener('input', renderBPrev));
+['b-sh','b-sf','b-sd','b-rd'].forEach(id => document.getElementById(id).addEventListener('change', renderBPrev));
+
+function buildBTpl() {
+  const name = bv('b-name') || 'Newsletter';
+  const tag = bv('b-tag');
+  const logo = bv('b-logo');
+  const brand = bv('b-brand');
+  const hbg = bv('b-hbg');
+  const bbg = bv('b-bbg');
+  const cbg = bv('b-cbg');
+  const txt = bv('b-txt');
+  const btn = bv('b-btn');
+  const mw = bv('b-mw') || '600';
+  const sh = bc('b-sh');
+  const sf = bc('b-sf');
+  const sd = bc('b-sd');
+  const rd = bc('b-rd');
+  const r = rd ? '8px' : '0';
+  const ft = bv('b-ft');
+  const tpl = bState.tpl;
+
+  function blk(b) {
+    if (b.type === 'heading') return `<h2 style="font-size:22px;font-weight:700;color:${txt};margin:0 0 14px;line-height:1.3;">${b.value}</h2>`;
+    if (b.type === 'body') return `<p style="font-size:15px;line-height:1.75;color:${txt};margin:0 0 16px;">${b.value}</p>`;
+    if (b.type === 'message') return `<div style="font-size:15px;line-height:1.75;color:${txt};">{{ .Message }}</div>`;
+    if (b.type === 'button') {
+      const [l,u] = (b.value||'Click here|#').split('|');
+      return `<div style="text-align:center;margin:24px 0;"><a href="${(u||'#').trim()}" style="display:inline-block;background:${btn};color:#ffffff;font-size:14px;font-weight:600;padding:12px 28px;border-radius:${r};text-decoration:none;">${(l||'').trim()}</a></div>`;
+    }
+    if (b.type === 'divider') return sd ? `<hr style="border:none;border-top:1px solid #e5e5e5;margin:20px 0;" />` : '';
+    if (b.type === 'spacer') return `<div style="height:20px;"></div>`;
+    return '';
+  }
+
+  const hdr = sh && tpl !== 'plain' ? `<table width="100%" cellpadding="0" cellspacing="0" style="background:${hbg};border-radius:${r} ${r} 0 0;"><tr><td style="padding:${tpl==='editorial'?'16px 32px':'28px 32px'};text-align:center;">${logo?`<img src="${logo}" alt="${name}" style="max-height:48px;" />`:`<div style="font-size:${tpl==='editorial'?'18px':'26px'};font-weight:700;color:#ffffff;font-family:Georgia,serif;">${name}</div>`}${(tpl!=='editorial'&&tpl!=='transactional'&&tag)?`<div style="font-size:13px;color:rgba(255,255,255,0.65);margin-top:5px;">${tag}</div>`:''}</td></tr></table>` : '';
+  const ftr = sf ? `<table width="100%" cellpadding="0" cellspacing="0"><tr><td style="padding:20px 32px;text-align:center;border-top:1px solid #e5e5e5;font-family:Arial,sans-serif;"><p style="font-size:12px;color:#888;margin:0;line-height:1.7;">${ft}</p></td></tr></table>` : '';
+
+  return `{{ template "email-header" . }}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>{{ .Campaign.Subject }}</title>
+</head>
+<body style="margin:0;padding:0;background:${bbg};font-family:Arial,Helvetica,sans-serif;">
+<table width="100%" cellpadding="0" cellspacing="0" style="background:${bbg};padding:32px 16px;">
+  <tr><td align="center">
+    <table width="100%" style="max-width:${mw}px;background:${cbg};border-radius:${r};overflow:hidden;" cellpadding="0" cellspacing="0">
+      <tr><td>
+        ${hdr}
+        <div style="padding:28px 32px;">
+          ${bState.blocks.map(blk).join('\n          ')}
+        </div>
+        ${ftr}
+      </td></tr>
+    </table>
+  </td></tr>
+</table>
+</body>
+</html>
+{{ template "email-footer" . }}`;
+}
+
+function renderBPrev() {
+  const name = bv('b-name') || 'Newsletter';
+  const tag = bv('b-tag');
+  const logo = bv('b-logo');
+  const brand = bv('b-brand');
+  const hbg = bv('b-hbg');
+  const bbg = bv('b-bbg');
+  const cbg = bv('b-cbg');
+  const txt = bv('b-txt');
+  const btn = bv('b-btn');
+  const mw = bv('b-mw') || '600';
+  const sh = bc('b-sh');
+  const sf = bc('b-sf');
+  const sd = bc('b-sd');
+  const rd = bc('b-rd');
+  const r = rd ? '8px' : '0';
+  const ft = bv('b-ft');
+  const tpl = bState.tpl;
+
+  function blkPrev(b) {
+    if (b.type === 'heading') return `<h2 style="font-size:22px;font-weight:700;color:${txt};margin:0 0 14px;line-height:1.3;">${b.value}</h2>`;
+    if (b.type === 'body') return `<p style="font-size:15px;line-height:1.75;color:${txt};margin:0 0 16px;">${b.value}</p>`;
+    if (b.type === 'message') return `<div style="background:#f0f7ff;border-left:3px solid ${brand};padding:12px 16px;margin:0 0 16px;font-size:13px;color:#555;border-radius:0 4px 4px 0;font-family:Arial,sans-serif;"><em>↳ Campaign content injects here via {{ "{{" }} .Message {{ "}}" }}</em></div>`;
+    if (b.type === 'button') {
+      const [l,u] = (b.value||'Click here|#').split('|');
+      return `<div style="text-align:center;margin:24px 0;"><a href="#" style="display:inline-block;background:${btn};color:#ffffff;font-size:14px;font-weight:600;padding:12px 28px;border-radius:${r};text-decoration:none;">${(l||'').trim()}</a></div>`;
+    }
+    if (b.type === 'divider') return sd ? `<hr style="border:none;border-top:1px solid #e5e5e5;margin:20px 0;" />` : '';
+    if (b.type === 'spacer') return `<div style="height:20px;"></div>`;
+    return '';
+  }
+
+  const hdr = sh && tpl !== 'plain' ? `<div style="background:${hbg};border-radius:${r} ${r} 0 0;padding:${tpl==='editorial'?'16px 32px':'28px 32px'};text-align:center;">${logo?`<img src="${logo}" alt="${name}" style="max-height:48px;" />`:`<div style="font-size:${tpl==='editorial'?'18px':'26px'};font-weight:700;color:#ffffff;font-family:Georgia,serif;">${name}</div>`}${(tpl!=='editorial'&&tpl!=='transactional'&&tag)?`<div style="font-size:13px;color:rgba(255,255,255,0.65);margin-top:5px;">${tag}</div>`:''}</div>` : '';
+  const ftr = sf ? `<div style="padding:20px 32px;text-align:center;border-top:1px solid #e5e5e5;font-family:Arial,sans-serif;"><p style="font-size:12px;color:#888;margin:0;line-height:1.7;">${ft}</p></div>` : '';
+
+  const prev = document.getElementById('b-prev');
+  prev.style.cssText = `max-width:${mw}px;margin:0 auto;background:${cbg};border-radius:${r};overflow:hidden;font-family:Arial,sans-serif;`;
+  prev.innerHTML = `${hdr}<div style="padding:28px 32px;">${bState.blocks.map(blkPrev).join('')}</div>${ftr}`;
+
+  if (document.getElementById('b-tab-code').classList.contains('active')) {
+    document.getElementById('b-code').textContent = buildBTpl();
+  }
+}
+
+renderBBlocks();
+renderBPrev();
+</script>
+</body>
+</html>
