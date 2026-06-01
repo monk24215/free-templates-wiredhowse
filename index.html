@@ -611,6 +611,39 @@ function renderPrev() {
 
 renderBlocks();
 renderPrev();
+
+$(document).ready(function(){
+    smoOpen();
+});
+
+// function onetime(node, type, callback) {
+// 	node.addEventListener(type, function(e) {
+//     e.target.removeEventListener(e.type, arguments.callee);
+//     return callback(e);
+//   });
+// }
+
+
+//   // one-time event
+
+// onetime(document.getElementById("myelement"), "click", handler);
+// // handler function
+//   function handler(e) {
+//     alert("You'll only see this once!");
+//   }
+
+// window.onload = function () {
+//     if (!ls.exists('has_code_run_before')) {
+//          smoOpen();
+//         ls.set.single('has_code_run_before', true);
+
+//         /** or... you can use a callback. **/
+//         ls.set.single('has_code_run_before', true, function () {
+//            /** Your code here... **/ 
+//         });
+//     }
+// };
+  
 </script>
 </body>
 </html>
