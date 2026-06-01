@@ -1,91 +1,84 @@
 # Free Listmonk Templates
 
-**Live site:** https://freetemplates.wiredhowse.app  
-**Alt URL:** https://listmonk-templates.wiredhowse.app
+**Live:** https://freetemplates.wiredhowse.app  
+**Alt:** https://listmonk-templates.wiredhowse.app
 
-Free, open-source email templates for [listmonk](https://listmonk.app). No account. No paywall. No harassment.
+Free, open-source email templates for [listmonk](https://listmonk.app). No account. No paywall.
 
 ---
 
-## What's included
+## Templates
 
-| Template | Description |
+| File | Description |
+|------|-------------|
+| `templates/newsletter.html` | Dark header, serif brand. Weekly roundups. |
+| `templates/editorial.html` | Newspaper masthead. Long-form writing. |
+| `templates/transactional.html` | Card on grey background. Confirmations, receipts. |
+| `templates/plain.html` | Looks like a human sent it. Highest engagement. |
+| `templates/promotional.html` | Dark theme, gold accent band. Announcements, offers. |
+
+---
+
+## How to use
+
+1. Copy the HTML from any template file
+2. In listmonk: **Templates → New template → type: Campaign**
+3. Switch editor to **Raw HTML**, paste, save
+
+Your campaign content injects automatically via `{{ template "content" . }}`.
+
+---
+
+## Variables — what's safe to use
+
+### Always safe (every version)
+| Variable | What it does |
 |----------|-------------|
-| `newsletter.html` | Dark header, serif brand name. Weekly roundups. |
-| `editorial.html` | Newspaper masthead style. Long-form writing. |
-| `transactional.html` | Card layout on grey bg. Confirmations, receipts. |
-| `plain.html` | Looks like a human sent it. Highest engagement. |
-| `promotional.html` | Dark theme, gold accent. Announcements, offers. |
+| `{{ template "content" . }}` | Campaign body — required |
+| `{{ template "email-header" . }}` | Required at top |
+| `{{ template "email-footer" . }}` | Required at bottom |
+| `{{ UnsubscribeURL }}` | Unsubscribe link |
 
-Plus a **live builder** at the site above — customize colors, blocks, and layout, copy the output directly into listmonk.
-
----
-
-## How to use a template
-
-1. Copy the HTML from `templates/<name>.html`
-2. In listmonk: **Templates → New template**
-3. Set type to **Campaign**
-4. Paste the HTML → Save
-5. Select the template when creating a campaign
-
-That's it. Your campaign content goes into `{{ .Message }}` automatically.
-
----
-
-## Template variable reference
-
-| Variable | What it outputs |
-|----------|----------------|
-| `{{ .Message }}` | Campaign body — required in every template |
+### Generally available (test first)
+| Variable | What it does |
+|----------|-------------|
 | `{{ .Campaign.Name }}` | Campaign name |
 | `{{ .Campaign.Subject }}` | Subject line |
 | `{{ .Campaign.FromName }}` | Sender name |
-| `{{ .Campaign.FromEmail }}` | Sender email |
 | `{{ .Subscriber.Email }}` | Subscriber email |
-| `{{ .Subscriber.FirstName }}` | First name |
-| `{{ .Subscriber.LastName }}` | Last name |
 | `{{ .Subscriber.Name }}` | Full name |
-| `{{ .Subscriber.Attribs.yourfield }}` | Custom attribute |
-| `{{ UnsubscribeURL }}` | Unsubscribe link (required for compliance) |
-| `{{ ManageSubscriptionURL }}` | Preferences page |
-| `{{ OptinURL }}` | Double opt-in confirmation (opt-in templates only) |
-| `{{ template "email-header" . }}` | Required at top of every template |
-| `{{ template "email-footer" . }}` | Required at bottom of every template |
+
+### Version dependent (use a guard)
+```
+{{ if .Subscriber.FirstName }}Hi {{ .Subscriber.FirstName }}{{ end }}
+```
+This fails silently instead of throwing a compiler error if the variable doesn't exist.
 
 ---
 
 ## Deploy your own copy
 
-This is a pure static site — no build step, no server-side code.
+Pure static — no build step required.
 
-### Railway (one click)
-1. Fork this repo
-2. New project in Railway → Deploy from GitHub repo
-3. Railway auto-detects `railway.json` and serves it as a static site
-4. Add custom domains under Settings → Domains
+**Railway:** Fork repo → new Railway project → deploy from GitHub → add custom domains under Settings → Domains.
 
-### Any static host
-Upload the repo contents anywhere that serves HTML. Netlify, Vercel, Cloudflare Pages, S3 — all work.
+**Anywhere else:** Upload the repo contents to any static host (Netlify, Vercel, Cloudflare Pages, S3).
 
 ---
 
 ## Contributing
 
-PRs welcome. Adding a new template:
+PRs welcome. To add a template:
 
 1. Create `templates/yourname.html`
-2. Start with `{{ template "email-header" . }}` and end with `{{ template "email-footer" . }}`
-3. Use `{{ .Message }}` where the campaign content should appear
-4. Add an entry to the `TEMPLATES` array in `index.html`
-5. Open a PR
+2. Start with `{{ template "email-header" . }}`, end with `{{ template "email-footer" . }}`
+3. Use `{{ template "content" . }}` where campaign content should appear
+4. Use only the "always safe" variables listed above
+5. Add an entry to the `TEMPLATES` array in `index.html`
+6. Open a PR
 
 ---
 
 ## License
 
-MIT. Free to use, modify, and redistribute. Attribution appreciated but not required.
-
----
-
-Made by [WiredHowse](https://wiredhowse.com) because people deserve free tools without a sales pitch attached.
+MIT. Made by [WiredHowse](https://wiredhowse.com) because free tools shouldn't require a sales pitch.

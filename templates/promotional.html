@@ -11,28 +11,22 @@
   <tr><td align="center">
     <table width="100%" style="max-width:600px;" cellpadding="0" cellspacing="0">
 
-      <!-- Header -->
-      <tr><td style="background:#0d0d0d;padding:0 0 32px;text-align:center;">
-        <div style="font-size:13px;font-family:Arial,sans-serif;letter-spacing:0.16em;text-transform:uppercase;color:#666666;margin-bottom:16px;">{{ .Campaign.Name }}</div>
-        <h1 style="font-size:36px;font-weight:800;color:#ffffff;margin:0;line-height:1.15;letter-spacing:-1px;">{{ .Campaign.Subject }}</h1>
+      <tr><td style="padding:0 0 28px;text-align:center;">
+        <div style="font-size:12px;font-family:Arial,sans-serif;letter-spacing:0.14em;text-transform:uppercase;color:#555555;margin-bottom:14px;">{{ .Campaign.Name }}</div>
+        <h1 style="font-size:34px;font-weight:800;color:#ffffff;margin:0;line-height:1.15;letter-spacing:-0.5px;">{{ .Campaign.Subject }}</h1>
       </td></tr>
 
-      <!-- Hero band -->
-      <tr><td style="background:#e8c547;padding:3px 0;"></td></tr>
+      <tr><td style="background:#e8c547;padding:2px 0;"></td></tr>
 
-      <!-- Body card -->
       <tr><td style="background:#1a1a1a;padding:40px 44px;border-radius:0 0 8px 8px;">
         <div style="font-size:16px;line-height:1.75;color:#cccccc;">
           {{ template "content" . }}
         </div>
       </td></tr>
 
-      <!-- Footer -->
-      <tr><td style="padding:28px 0;text-align:center;">
-        <p style="font-size:12px;color:#555555;margin:0;line-height:1.7;">
-          <a href="{{ UnsubscribeURL }}" style="color:#555555;">Unsubscribe</a>
-          &nbsp;&middot;&nbsp;
-          <a href="{{ ManageSubscriptionURL }}" style="color:#555555;">Manage preferences</a>
+      <tr><td style="padding:24px 0;text-align:center;">
+        <p style="font-size:12px;color:#444444;margin:0;font-family:Arial,sans-serif;">
+          <a href="{{ UnsubscribeURL }}" style="color:#444444;text-decoration:none;">Unsubscribe</a>
         </p>
       </td></tr>
 

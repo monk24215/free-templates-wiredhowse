@@ -1,12 +1,7 @@
 {
   "$schema": "https://railway.app/railway.schema.json",
   "build": {
-    "builder": "STATIC"
-  },
-  "deploy": {
-    "staticRouter": {
-      "baseDirectory": "/",
-      "errorPage": "index.html"
-    }
+    "builder": "STATIC",
+    "publishDirectory": "/"
   }
 }

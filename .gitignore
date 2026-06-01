@@ -1,6 +1,7 @@
 # Dependencies
 node_modules/
-
+loadmeup.bat
+*.bat
 # Environment files (NEVER commit these)
 .env
 .env.*
