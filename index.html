@@ -290,6 +290,147 @@ footer a { color: var(--ink-muted); }
   display: flex; gap: 10px; justify-content: flex-end;
 }
 
+/* SETUP SECTION */
+.setup-section {
+  background: linear-gradient(180deg, #0d0d14 0%, #0f0f1a 100%);
+  padding: 80px 32px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.setup-section::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(37,99,235,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(37,99,235,0.04) 1px, transparent 1px);
+  background-size: 48px 48px;
+  pointer-events: none;
+}
+.setup-section::after {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 3px;
+  background: linear-gradient(to bottom, transparent, rgba(37,99,235,0.6), transparent);
+  pointer-events: none;
+}
+.setup-section-inner { position: relative; max-width: 640px; margin: 0 auto; }
+.setup-eyebrow {
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em;
+  text-transform: uppercase; color: #60a5fa; margin-bottom: 18px;
+  display: flex; align-items: center; justify-content: center; gap: 12px;
+}
+.setup-eyebrow::before, .setup-eyebrow::after {
+  content: ''; width: 28px; height: 1px; background: rgba(37,99,235,0.4);
+}
+.setup-heading {
+  font-family: var(--serif); font-size: clamp(32px, 5vw, 54px);
+  font-weight: 400; color: #e8e6f0; line-height: 1.1; margin-bottom: 16px;
+}
+.setup-heading em { font-style: italic; color: #60a5fa; }
+.setup-sub {
+  font-size: 16px; color: #7a7890; font-weight: 300; line-height: 1.75;
+  max-width: 460px; margin: 0 auto 36px;
+}
+.setup-sub strong { color: #b0aec8; font-weight: 500; }
+.setup-launch-btn {
+  display: inline-flex; align-items: center; gap: 12px;
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  color: white;
+  font-family: var(--sans); font-size: 14px; font-weight: 600;
+  letter-spacing: 0.04em;
+  padding: 15px 36px;
+  border: none; cursor: pointer;
+  border-radius: 6px;
+  transition: all 0.25s;
+  box-shadow: 0 8px 32px rgba(37,99,235,0.3);
+}
+.setup-launch-btn:hover { transform: translateY(-2px); box-shadow: 0 16px 48px rgba(37,99,235,0.4); }
+.setup-launch-btn:active { transform: translateY(0); }
+.setup-btn-icon {
+  width: 22px; height: 22px;
+  background: rgba(255,255,255,0.15); border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px; flex-shrink: 0;
+}
+.setup-trust {
+  margin-top: 24px; display: flex; align-items: center;
+  justify-content: center; gap: 12px; flex-wrap: wrap;
+}
+.setup-trust-item { font-size: 12px; color: #4a4a6a; letter-spacing: 0.04em; }
+.setup-trust-dot { width: 3px; height: 3px; border-radius: 50%; background: #2a2a4a; }
+
+/* SETUP MODAL OVERLAY */
+.setup-modal-overlay {
+  display: none; position: fixed; inset: 0; z-index: 999999;
+  align-items: center; justify-content: center;
+  background: rgba(0,0,0,0.88);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  padding: 20px;
+  animation: setupOverlayIn 0.3s ease;
+}
+.setup-modal-overlay.open { display: flex; }
+@keyframes setupOverlayIn { from { opacity: 0; } to { opacity: 1; } }
+
+/* SETUP MODAL WINDOW */
+.setup-modal-window {
+  width: 100%; max-width: 1080px;
+  height: min(640px, 90vh);
+  background: #0a0a0f;
+  border: 1px solid rgba(37,99,235,0.2);
+  border-radius: 10px;
+  position: relative; display: flex; flex-direction: column;
+  animation: setupModalIn 0.35s cubic-bezier(0.34, 1.2, 0.64, 1);
+  box-shadow: 0 40px 120px rgba(0,0,0,0.8), 0 0 0 1px rgba(37,99,235,0.1);
+  overflow: hidden;
+}
+@keyframes setupModalIn {
+  from { opacity: 0; transform: scale(0.94) translateY(20px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+.setup-modal-bar {
+  height: 44px; background: #0d0d16;
+  border-bottom: 1px solid rgba(37,99,235,0.12);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 20px; flex-shrink: 0;
+}
+.setup-modal-title {
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em;
+  color: #60a5fa; text-transform: uppercase;
+}
+.setup-modal-close {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  color: #7a7890; width: 28px; height: 28px; border-radius: 50%;
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+  font-size: 15px; transition: all 0.2s; padding: 0; font-family: var(--sans);
+}
+.setup-modal-close:hover { background: rgba(37,99,235,0.15); border-color: rgba(37,99,235,0.4); color: #60a5fa; }
+.setup-modal-frame { flex: 1; width: 100%; border: none; display: block; background: #0a0a0f; }
+.setup-modal-loading {
+  position: absolute; inset: 44px 0 0;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 14px;
+  color: #4a4a6a; font-size: 12px; letter-spacing: 0.1em;
+  pointer-events: none; transition: opacity 0.3s;
+  font-family: var(--mono);
+}
+.setup-spinner {
+  width: 28px; height: 28px;
+  border: 2px solid rgba(37,99,235,0.15);
+  border-top-color: #2563eb;
+  border-radius: 50%;
+  animation: setupSpin 0.8s linear infinite;
+}
+@keyframes setupSpin { to { transform: rotate(360deg); } }
+.setup-esc-hint {
+  position: absolute; bottom: -28px; left: 50%; transform: translateX(-50%);
+  font-size: 11px; color: rgba(255,255,255,0.18); letter-spacing: 0.06em;
+  white-space: nowrap; font-family: var(--mono);
+}
+
 @media (max-width: 700px) {
   .builder-wrap { grid-template-columns: 1fr; }
   .bp { max-height: 420px; }
@@ -321,34 +462,52 @@ footer a { color: var(--ink-muted); }
   </div>
 </div>
 
-<!-- HOW IT WORKS -->
-<section style="background: var(--surface-2); padding: 56px 32px;">
-  <div class="section-inner">
-    <div class="section-label">How it works</div>
-    <div class="how-grid">
-      <div class="how-step">
-        <span class="step-num">01</span>
-        <div class="step-title">Pick a template or build your own</div>
-        <div class="step-desc">Five ready-made templates below, or use the live builder to customize colors, fonts, and blocks.</div>
-      </div>
-      <div class="how-step">
-        <span class="step-num">02</span>
-        <div class="step-title">Copy the HTML</div>
-        <div class="step-desc">Click "copy HTML" on any template. The listmonk-required header and footer wrappers are already included.</div>
-      </div>
-      <div class="how-step">
-        <span class="step-num">03</span>
-        <div class="step-title">Paste into listmonk</div>
-        <div class="step-desc">In listmonk go to Templates → New Template → set type to "Campaign" → paste → save. Done.</div>
-      </div>
-      <div class="how-step">
-        <span class="step-num">04</span>
-        <div class="step-title">Write your campaign</div>
-        <div class="step-desc">Your campaign content flows into the <code style="font-family:var(--mono);font-size:12px;background:var(--surface-2);padding:1px 5px;border-radius:4px;">{{ "{{" }} .Message {{ "}}" }}</code> variable automatically.</div>
-      </div>
+<!-- SETUP GUIDE SECTION -->
+<div class="setup-section">
+  <div class="setup-section-inner">
+    <div class="setup-eyebrow">Setup Guide</div>
+    <h2 class="setup-heading">New to Listmonk?<br><em>We've Got You.</em></h2>
+    <p class="setup-sub">
+      Walk through the exact steps to get any template live in your listmonk instance —
+      from copy to first send. <strong>Under 5 minutes.</strong>
+    </p>
+    <button class="setup-launch-btn" onclick="setupOpenModal()">
+      <div class="setup-btn-icon">▶</div>
+      Watch the Setup Guide
+    </button>
+    <div class="setup-trust">
+      <div class="setup-trust-item">6 steps</div>
+      <div class="setup-trust-dot"></div>
+      <div class="setup-trust-item">Visual walkthrough</div>
+      <div class="setup-trust-dot"></div>
+      <div class="setup-trust-item">All variables explained</div>
     </div>
   </div>
-</section>
+</div>
+
+<!-- SETUP MODAL -->
+<div class="setup-modal-overlay" id="setupModalOverlay" onclick="setupOverlayClick(event)">
+  <div class="setup-modal-window">
+    <div class="setup-modal-bar">
+      <div class="setup-modal-title">How To Use These Templates in Listmonk</div>
+      <button class="setup-modal-close" onclick="setupCloseModal()" title="Close">✕</button>
+    </div>
+    <div class="setup-modal-loading" id="setupLoading">
+      <div class="setup-spinner"></div>
+      <span>Loading Guide...</span>
+    </div>
+    <iframe
+      class="setup-modal-frame"
+      id="setupFrame"
+      src=""
+      data-src="listmonk-setup-guide.html"
+      onload="setupFrameLoaded()"
+      title="How To Use These Templates in Listmonk"
+      allowfullscreen>
+    </iframe>
+    <div class="setup-esc-hint">Press ESC to close</div>
+  </div>
+</div>
 
 <!-- TEMPLATES -->
 <section id="templates">
@@ -810,6 +969,36 @@ function renderBPrev() {
 
 renderBBlocks();
 renderBPrev();
+</script>
+
+<script>
+(function() {
+  var overlay = document.getElementById('setupModalOverlay');
+  var frame   = document.getElementById('setupFrame');
+  var loading = document.getElementById('setupLoading');
+  var loaded  = false;
+
+  window.setupOpenModal = function() {
+    if (!loaded) { frame.src = frame.getAttribute('data-src'); }
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  };
+  window.setupCloseModal = function() {
+    overlay.classList.remove('open');
+    document.body.style.overflow = '';
+  };
+  window.setupOverlayClick = function(e) {
+    if (e.target === overlay) setupCloseModal();
+  };
+  window.setupFrameLoaded = function() {
+    loaded = true;
+    loading.style.opacity = '0';
+    setTimeout(function() { loading.style.display = 'none'; }, 300);
+  };
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && overlay.classList.contains('open')) setupCloseModal();
+  });
+})();
 </script>
 </body>
 </html>
