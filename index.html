@@ -632,17 +632,17 @@ $(document).ready(function(){
 //     alert("You'll only see this once!");
 //   }
 
-// window.onload = function () {
-//     if (!ls.exists('has_code_run_before')) {
-//          smoOpen();
-//         ls.set.single('has_code_run_before', true);
+window.onload = function () {
+    if (!ls.exists('has_code_run_before')) {
+         smoOpen();
+        ls.set.single('has_code_run_before', true);
 
-//         /** or... you can use a callback. **/
-//         ls.set.single('has_code_run_before', true, function () {
-//            /** Your code here... **/ 
-//         });
-//     }
-// };
+        /** or... you can use a callback. **/
+        ls.set.single('has_code_run_before', true, function () {
+           /** Your code here... **/ 
+        });
+    }
+};
   
 </script>
 </body>
