@@ -1,0 +1,38 @@
+{{ template "email-header" . }}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>{{ .Campaign.Subject }}</title>
+</head>
+<body style="margin:0;padding:0;background:#0d0d0d;font-family:Arial,Helvetica,sans-serif;">
+<table width="100%" cellpadding="0" cellspacing="0" style="background:#0d0d0d;padding:40px 16px;">
+  <tr><td align="center">
+    <table width="100%" style="max-width:600px;" cellpadding="0" cellspacing="0">
+
+      <tr><td style="padding:0 0 28px;text-align:center;">
+        <div style="font-size:12px;font-family:Arial,sans-serif;letter-spacing:0.14em;text-transform:uppercase;color:#555555;margin-bottom:14px;">{{ .Campaign.Name }}</div>
+        <h1 style="font-size:34px;font-weight:800;color:#ffffff;margin:0;line-height:1.15;letter-spacing:-0.5px;">{{ .Campaign.Subject }}</h1>
+      </td></tr>
+
+      <tr><td style="background:#e8c547;padding:2px 0;"></td></tr>
+
+      <tr><td style="background:#1a1a1a;padding:40px 44px;border-radius:0 0 8px 8px;">
+        <div style="font-size:16px;line-height:1.75;color:#cccccc;">
+          {{ template "content" . }}
+        </div>
+      </td></tr>
+
+      <tr><td style="padding:24px 0;text-align:center;">
+        <p style="font-size:12px;color:#444444;margin:0;font-family:Arial,sans-serif;">
+          <a href="{{ UnsubscribeURL }}" style="color:#444444;text-decoration:none;">Unsubscribe</a>
+        </p>
+      </td></tr>
+
+    </table>
+  </td></tr>
+</table>
+</body>
+</html>
+{{ template "email-footer" . }}
