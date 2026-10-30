@@ -7,6 +7,19 @@ Free, open-source email templates for [listmonk](https://listmonk.app). No accou
 
 ---
 
+## Screenshots
+
+| | |
+|---|---|
+| ![Home](screenshots/01-home.webp) | ![Five templates](screenshots/02-templates.webp) |
+| **Home** | **Five production-ready templates** |
+| ![Live builder](screenshots/03-builder.png) | ![Setup guide: copy HTML](screenshots/04-guide-copy-html.webp) |
+| **Live template builder** | **Setup guide: copy the HTML** |
+| ![Setup guide: paste into Listmonk](screenshots/05-guide-paste.webp) | ![Setup guide: key variables](screenshots/06-guide-variables.webp) |
+| **Paste into Listmonk** | **Key template variables** |
+| ![Template live](screenshots/07-guide-done.webp) | |
+| **Template live, start sending** | |
+
 ## Templates
 
 | File | Description |
